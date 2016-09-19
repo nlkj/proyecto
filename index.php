@@ -1,7 +1,7 @@
 <?php
     require "vendor/autoload.php";
 
-    $app= new Slim\App();
+    $app= new Slim\App(); 
     $c = $app->getContainer();
 
     /*//$c['bd'] = function(){
