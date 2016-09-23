@@ -3,6 +3,14 @@
     require "controladorPriv.php";
 
     $app= new Slim\App();
+
+    $app->add(new \Slim\Middleware\HttpBasicAuthentication([
+    	"path" => "/user",
+    	"users" => [
+        	"admin" => "admin"
+    	]
+]));
+
     $c = $app->getContainer();
 
     $c['bdPriv'] = function(){
