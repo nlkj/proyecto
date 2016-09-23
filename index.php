@@ -4,12 +4,16 @@
 
     $app= new Slim\App();
 
+    //autenticar
     $app->add(new \Slim\Middleware\HttpBasicAuthentication([
     	"path" => "/user",
     	"users" => [
         	"admin" => "admin"
     	]
 ]));
+
+    //https
+    $app->add(new \Slim\Middleware\SafeURLMiddleware());
 
     $c = $app->getContainer();
 
