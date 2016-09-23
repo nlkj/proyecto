@@ -60,7 +60,7 @@ sql;
         $sql = <<<sql
 create table Preguntas(
     id int primary key auto_increment,
-    pregunta varchar(200),
+    pregunta text,
     pregunta_url varchar(5),
     tema int,
     foreign key(tema) references Temas(id)
@@ -79,7 +79,7 @@ sql;
         $sql = <<<sql
 create table Respuestas(
     id int primary key auto_increment,
-    respuesta varchar(100),
+    respuesta text,
     verdadera bit,
     pregunta int,
     foreign key(pregunta) references Preguntas(id)
