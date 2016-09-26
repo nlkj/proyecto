@@ -3,14 +3,31 @@
   <head>
     <meta charset="utf-8">
     <title>Crear preguntas</title>
+    <style>
+      div{
+        padding-left: 5px;
+      }
+      p{
+        margin-bottom: 0;
+      }
+      output{
+        padding: 5px;
+        background-color: lightgreen;
+      }
+    </style>
     <?php
-         //encontrar path al css
+         //encontrar path
          $path= dirname($_SERVER['PHP_SELF']);
          $path= explode("index.php",$path, -1)[0];
      ?>
   </head>
   <body>
     <h1>Crear pregunta</h1>
+    <div>
+      <p>clicks:</p><br>
+      <output><?php $mens=$data['clicks']; echo $mens; ?></output>
+    </div>
+    <a href="<?php echo $path;?>">acceso zona pública</a>
     <h3><?php $r=$data['mens']; echo $r; ?> </h3>
 
     <!----------------------------------------!>
