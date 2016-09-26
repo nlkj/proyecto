@@ -93,6 +93,20 @@ sql;
             echo "<p>Tabla Respuestas creada!!!</p>";
         }
 
+        /* Crear tabla Estadisticas */
+        $sql = <<<sql
+create table Estadisticas(
+    ruta varchar(20),
+    clics int DEFAULT 0
+);
+sql;
+        $res = $conexion->exec($sql);
+        if($res===FALSE){
+            echo "<p>No se ha podido crear la tabla Estadísticas.</p>";
+            echo "<p>".$conexion->errorInfo()[2]."</p>";
+        }else{
+            echo "<p>Tabla Estadísticas creada!!!</p>";
+        }
 
 
         /* Insert temas */

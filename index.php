@@ -1,19 +1,22 @@
 <?php
     require "vendor/autoload.php";
     require "controladorPriv.php";
+    require "middle.php";
 
     $app= new Slim\App();
 
     //autenticar
+/*
     $app->add(new \Slim\Middleware\HttpBasicAuthentication([
     	"path" => "/user",
     	"users" => [
         	"admin" => "admin"
     	]
 ]));
-
+*/
     //https
-    $app->add(new \Slim\Middleware\SafeURLMiddleware());
+    //$app->add(new \Slim\Middleware\SafeURLMiddleware());
+
 
     $c = $app->getContainer();
 
@@ -23,14 +26,23 @@
         return $pdo;
     };
 
+    //test Middleware
+    $c['path']="aaa";
+    $app->add(new Middle($c['bdPriv']));
+/*    $app->add(function ($request, $response, $next) {
+          $this->path= $request->getUri()->getPath();
+          $response = $next($request, $response);
+          return $response;
+    });*/
+
+
+
     $c['vistaPriv']= new \Slim\Views\PhpRenderer('viewPriv/');
     $c['vistaPub']= new \Slim\Views\PhpRenderer('viewPub/');
 
 
     $app->get('/', function($request, $response, $args){
-        //$response->write("<h1>Hola</h1>");
-        //return $response;
-        $data["mensaje"]= "Holaaa";
+        $data["mensaje"]= $this->path;
         $response= $this->vistaPub->render($response, "plantilla1.php",$data );
         return $response;
     });
