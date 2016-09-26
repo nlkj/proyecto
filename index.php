@@ -2,6 +2,7 @@
     require "vendor/autoload.php";
     require_once "model/accesoBD.php";
     require_once "controler/controladorPriv.php";
+    require_once "controler/controladorPub.php";
     require "clickCount.php";
 
     $app= new Slim\App();
@@ -35,13 +36,14 @@
     $c['model']=new AccesoBD();
 
     /*****************zona pública***********************/
-    $app->get('/', function($request, $response, $args){
+    /*$app->get('/', function($request, $response, $args){
         $data["mensaje"]= "";
         $data['clicks']= $request->getAttribute('clicks');
         $response= $this->vistaPub->render($response, "plantilla1.php",$data );
         return $response;
-    });
-
+    });*/
+    //mostrar página principal
+    $app->get('/', '\ControladorPub:paginaPrincipal');
 
     /*****************zona privada***********************/
     //mostrar página principal
